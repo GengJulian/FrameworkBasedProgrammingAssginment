@@ -13,31 +13,34 @@ public class Memory {
     //static Logger logger = Logger.getLogger("org.example.core.model");
     String id;
     String description;
+    MemoryType type;
     LocalDate createdAt;
     List<URL> urls;
     List<String> files;
-    User owner;
-    Set<User> participants;
+    Human owner;
+    Set<Human> participants;
 
     public Memory(){
 
     }
 
     public Memory(String description,
+                  MemoryType typeOfMemory,
                   LocalDate createdAt,
                   List<URL> urls,
                   List<String> files,
-                  User owner,
-                  Set<User> participants) {
+                  Human owner,
+                  Set<Human> participants) {
         this.id = UUID.randomUUID().toString();
         this.description = description;
+        this.type = typeOfMemory;
         this.createdAt = createdAt;
         this.urls = urls;
         this.files = files;
         this.owner = owner;
         this.participants = participants;
-        //logger.info("Memory with id: "+ this.id + " has been created!");
-        logger.debug("Memory with id: "+ this.id + " has been created!");
+        logger.info("Memory with id: "+ this.id + " has been created!");
+        //logger.debug("Memory with id: "+ this.id + " has been created!");
     }
 
     public String getId() {
@@ -51,6 +54,10 @@ public class Memory {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public MemoryType getType() { return type; }
+
+    public void setType(MemoryType type) { this.type = type; }
 
     public LocalDate getCreatedAt() {
         return createdAt;
@@ -76,19 +83,32 @@ public class Memory {
         this.files = files;
     }
 
-    public User getOwner() {
+    public Human getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(Human owner) {
         this.owner = owner;
     }
 
-    public Set<User> getParticipants() {
+    public Set<Human> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(Set<User> participants) {
+    public void setParticipants(Set<Human> participants) {
         this.participants = participants;
+    }
+
+    @Override
+    public String toString() {
+        return "Memory{" +
+                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                ", createdAt=" + createdAt +
+                ", urls=" + urls +
+                ", files=" + files +
+                ", owner=" + owner +
+                ", participants=" + participants +
+                '}';
     }
 }

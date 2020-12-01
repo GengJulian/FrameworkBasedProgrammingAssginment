@@ -1,9 +1,12 @@
-package model;
+package uni.eszterhazy.keretrendszer.model;
+
+import org.apache.log4j.Logger;
 
 import java.util.Collection;
 import java.util.UUID;
 
 public class Human {
+    static Logger logger = Logger.getLogger(Human.class);
     String userId;
     String firstName;
     String lastName;
@@ -13,12 +16,14 @@ public class Human {
     public Human(){
 
     }
+
     public Human(String firstName, String lastName) {
         this.userId = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.depressed = false;
         this.memories = null;
+        logger.info("Human has created with id:"+ this.userId);
     }
 
     public String getUserId() {
@@ -58,7 +63,7 @@ public class Human {
     }
 
     private void setDepressed() {
-        
+
         this.depressed = depressed;
     }
 

@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="util" />
         <module name="core" />
         <module name="console" />
+        <module name="util" />
+        <module name="service" />
+        <module name="dao_relational" />
       </profile>
     </annotationProcessing>
   </component>

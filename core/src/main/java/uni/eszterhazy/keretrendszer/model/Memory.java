@@ -1,4 +1,4 @@
-package model;
+package uni.eszterhazy.keretrendszer.model;
 
 import org.apache.log4j.Logger;
 
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class Memory {
     static Logger logger = Logger.getLogger(Memory.class.getName());
-    //static Logger logger = Logger.getLogger("org.example.core.model");
+    //static Logger logger = Logger.getLogger("org.example.core.uni.eszterhazy.keretrendszer.service.model");
     String id;
     String description;
     MemoryType type;

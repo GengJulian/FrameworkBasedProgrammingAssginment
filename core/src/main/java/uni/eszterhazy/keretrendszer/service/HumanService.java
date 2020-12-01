@@ -1,7 +1,7 @@
-package service;
+package uni.eszterhazy.keretrendszer.service;
 
-import model.Human;
-import model.Memory;
+import uni.eszterhazy.keretrendszer.model.Human;
+import uni.eszterhazy.keretrendszer.model.Memory;
 
 import java.util.Collection;
 

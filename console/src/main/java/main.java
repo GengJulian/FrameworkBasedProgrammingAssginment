@@ -1,6 +1,6 @@
-import model.Memory;
-import model.MemoryType;
-import model.Human;
+import uni.eszterhazy.keretrendszer.model.Memory;
+import uni.eszterhazy.keretrendszer.model.MemoryType;
+import uni.eszterhazy.keretrendszer.model.Human;
 
 import java.net.URL;
 import java.time.LocalDate;

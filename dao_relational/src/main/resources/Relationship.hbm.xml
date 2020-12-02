@@ -1,0 +1,14 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="uni.eszterhazy.keretrendszer.model.Relationship" table="Human_Memory_Relationship">
+        <composite-id >
+            <key-property name="userId" type="string">
+                <column name="user_id" />
+            </key-property>
+
+            <key-property name="memoryId" type="string">
+                <column name="memory_id" />
+            </key-property>
+        </composite-id>
+         <property name="type" type="org.hibernate.type.EnumType" column="relationship_type"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,7 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="uni.eszterhazy.keretrendszer.model.Human" table="Human">
+        <id name="userId" type="string" column="id"/>
+        <property name="firstName" column="firstname" type="string" />
+        <property name="lastName" column="lastname" type="string"/>
+    </class>
+</hibernate-mapping>

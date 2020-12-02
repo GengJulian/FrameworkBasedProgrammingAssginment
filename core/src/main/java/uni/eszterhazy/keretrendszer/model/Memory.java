@@ -15,8 +15,7 @@ public class Memory {
     String description;
     MemoryType type;
     LocalDate createdAt;
-    List<URL> urls;
-    List<String> files;
+    List<Resource> resources;
     Human owner;
     Set<Human> participants;
 
@@ -27,16 +26,14 @@ public class Memory {
     public Memory(String description,
                   MemoryType typeOfMemory,
                   LocalDate createdAt,
-                  List<URL> urls,
-                  List<String> files,
+                  List<Resource> resources,
                   Human owner,
                   Set<Human> participants) {
         this.id = UUID.randomUUID().toString();
         this.description = description;
         this.type = typeOfMemory;
         this.createdAt = createdAt;
-        this.urls = urls;
-        this.files = files;
+        this.resources = resources;
         this.owner = owner;
         this.participants = participants;
         logger.info("Memory with id: "+ this.id + " has been created!");
@@ -67,22 +64,6 @@ public class Memory {
         this.createdAt = createdAt;
     }
 
-    public List<URL> getUrls() {
-        return urls;
-    }
-
-    public void setUrls(List<URL> urls) {
-        this.urls = urls;
-    }
-
-    public List<String> getFiles() {
-        return files;
-    }
-
-    public void setFiles(List<String> files) {
-        this.files = files;
-    }
-
     public Human getOwner() {
         return owner;
     }
@@ -104,11 +85,12 @@ public class Memory {
         return "Memory{" +
                 "id='" + id + '\'' +
                 ", description='" + description + '\'' +
+                ", type=" + type +
                 ", createdAt=" + createdAt +
-                ", urls=" + urls +
-                ", files=" + files +
+                ", resources=" + resources +
                 ", owner=" + owner +
                 ", participants=" + participants +
                 '}';
     }
+
 }

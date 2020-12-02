@@ -1,6 +1,7 @@
 import uni.eszterhazy.keretrendszer.model.Memory;
 import uni.eszterhazy.keretrendszer.model.MemoryType;
 import uni.eszterhazy.keretrendszer.model.Human;
+import uni.eszterhazy.keretrendszer.model.Resource;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -15,8 +16,7 @@ public class main {
                 "This is the first memory",
                 MemoryType.UNFORGETTABLE,
                 LocalDate.now(),
-                new ArrayList<URL>(),
-                new ArrayList<String>(),
+                new ArrayList<Resource>(),
                 user1,
                 new HashSet<Human>()
         );

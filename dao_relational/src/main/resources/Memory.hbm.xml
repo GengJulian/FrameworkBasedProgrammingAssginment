@@ -1,0 +1,8 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="uni.eszterhazy.keretrendszer.model.Memory" table="Memory">
+        <id name="id" type="string" column="id"/>
+        <property name="description" type="string" column="description"/>
+        <property name="type" type="org.hibernate.type.EnumType" column="memory_type"/>
+        <property name="createdAt" type="LocalDate" column="created_at"/>
+    </class>
+</hibernate-mapping>

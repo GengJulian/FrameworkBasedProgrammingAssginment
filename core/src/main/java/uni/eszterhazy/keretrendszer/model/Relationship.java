@@ -1,6 +1,8 @@
 package uni.eszterhazy.keretrendszer.model;
 
-public class Relationship {
+import java.io.Serializable;
+
+public class Relationship implements Serializable {
     String userId;
     String memoryId;
     RelationshipType type;

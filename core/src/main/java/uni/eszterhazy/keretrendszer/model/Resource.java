@@ -3,6 +3,7 @@ package uni.eszterhazy.keretrendszer.model;
 import java.util.UUID;
 
 public class Resource {
+
     String id;
     String value;
     ResourceType type;
@@ -15,6 +16,10 @@ public class Resource {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getValue() {

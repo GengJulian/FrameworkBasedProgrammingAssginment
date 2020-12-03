@@ -10,6 +10,9 @@ import java.util.UUID;
 
 public class Memory {
     static Logger logger = Logger.getLogger(Memory.class.getName());
+
+
+
     //static Logger logger = Logger.getLogger("org.example.core.uni.eszterhazy.keretrendszer.service.model");
     String id;
     String description;
@@ -42,6 +45,10 @@ public class Memory {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDescription() {

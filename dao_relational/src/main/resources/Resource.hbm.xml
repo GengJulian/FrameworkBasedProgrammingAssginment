@@ -2,6 +2,11 @@
     <class name="uni.eszterhazy.keretrendszer.model.Resource" table="Resource">
         <id name="id" type="string" column="resource_id"/>
         <property name="value" type="string" column="resource_value"/>
-        <property name="type" type="org.hibernate.type.EnumType" column="resource_type"/>
+        <property name="type" column="resource_type">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">uni.eszterhazy.keretrendszer.model.ResourceType</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
     </class>
 </hibernate-mapping>

@@ -10,6 +10,6 @@ public interface HumanDAO{
     void createHuman(Human human) throws HumanAlreadyCreated;
     Collection<Human> readAllHuman();
     Human readHuman(String id) throws HumanNotFound;
-    void editHuman(Human human);
+    void updateHuman(Human human);
     void deleteHuman(String id);
 }

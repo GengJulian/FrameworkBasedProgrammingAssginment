@@ -9,6 +9,11 @@
                 <column name="memory_id" />
             </key-property>
         </composite-id>
-         <property name="type" type="org.hibernate.type.EnumType" column="relationship_type"/>
+        <property name="type" column="relationship_type">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">uni.eszterhazy.keretrendszer.model.RelationshipType</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
     </class>
 </hibernate-mapping>

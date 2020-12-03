@@ -2,7 +2,12 @@
     <class name="uni.eszterhazy.keretrendszer.model.Memory" table="Memory">
         <id name="id" type="string" column="id"/>
         <property name="description" type="string" column="description"/>
-        <property name="type" type="org.hibernate.type.EnumType" column="memory_type"/>
+        <property name="type" column="memory_type">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">uni.eszterhazy.keretrendszer.model.MemoryType</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
         <property name="createdAt" type="LocalDate" column="created_at"/>
     </class>
 </hibernate-mapping>

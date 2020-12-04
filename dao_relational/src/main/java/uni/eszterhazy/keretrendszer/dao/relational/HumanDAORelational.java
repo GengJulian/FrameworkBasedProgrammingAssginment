@@ -50,7 +50,9 @@ public class HumanDAORelational implements HumanDAO {
     @Override
     public void updateHuman(Human human) {
         Session session= factory.openSession();
+        Transaction tx = session.beginTransaction();
         session.update(human);
+        tx.commit();
         logger.info(human.getFirstName() + " " + human.getLastName() + "is updated!");
     }
 

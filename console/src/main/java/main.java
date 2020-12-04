@@ -5,6 +5,7 @@ import uni.eszterhazy.keretrendszer.model.Resource;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -15,7 +16,7 @@ public class main {
         Memory memory1 = new Memory(
                 "This is the first memory",
                 MemoryType.UNFORGETTABLE,
-                LocalDate.now(),
+                LocalDateTime.now(),
                 new ArrayList<Resource>(),
                 user1,
                 new HashSet<Human>()

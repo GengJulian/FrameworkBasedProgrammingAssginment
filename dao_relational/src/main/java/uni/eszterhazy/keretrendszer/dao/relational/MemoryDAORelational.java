@@ -9,7 +9,6 @@ import org.hibernate.query.Query;
 import uni.eszterhazy.keretrendszer.dao.MemoryDAO;
 import uni.eszterhazy.keretrendszer.exceptions.MemoryAlreadyExist;
 import uni.eszterhazy.keretrendszer.exceptions.MemoryNotFound;
-import uni.eszterhazy.keretrendszer.model.Human;
 import uni.eszterhazy.keretrendszer.model.Memory;
 
 import java.util.Collection;
@@ -51,12 +50,14 @@ public class MemoryDAORelational implements MemoryDAO {
     @Override
     public void updateMemory(Memory memory) {
         Session session= factory.openSession();
-        session.update(memory);
-        logger.info("Memory with id:"memory.getId() + " is updated!");
+        Transaction tx = session.beginTransaction();
+        session.saveOrUpdate(memory);
+        tx.commit();
+        logger.info("Memory with id: "+memory.getId() + " is updated!");
     }
 
     @Override
-    public void deleteMemory(Memory memory) {
+    public void deleteMemory(String id) {
         Session session= factory.openSession();
         Transaction tx = session.beginTransaction();
         String hql = "DELETE FROM Memory WHERE id = :memory_id";

@@ -11,5 +11,5 @@ public interface MemoryDAO {
     Memory readMemory(String id) throws MemoryNotFound;
     Collection<Memory> readAllMemory();
     void updateMemory(Memory memory);
-    void deleteMemory(Memory memory);
+    void deleteMemory(String id);
 }

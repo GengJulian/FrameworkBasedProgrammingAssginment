@@ -1,5 +1,6 @@
 package uni.eszterhazy.keretrendszer.serviceImpl;
 
+import uni.eszterhazy.keretrendszer.dao.MemoryDAO;
 import uni.eszterhazy.keretrendszer.model.Human;
 import uni.eszterhazy.keretrendszer.model.Memory;
 import uni.eszterhazy.keretrendszer.model.MemoryType;
@@ -9,6 +10,12 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 public class MemoryServiceImpl implements MemoryService {
+    MemoryDAO dao;
+
+    public MemoryServiceImpl(MemoryDAO dao){
+        this.dao = dao;
+    }
+
     @Override
     public void addMemory(Memory memory) {
 

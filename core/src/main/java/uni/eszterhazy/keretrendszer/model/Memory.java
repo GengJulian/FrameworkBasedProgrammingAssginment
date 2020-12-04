@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -17,7 +18,7 @@ public class Memory {
     String id;
     String description;
     MemoryType type;
-    LocalDate createdAt;
+    LocalDateTime createdAt;
     List<Resource> resources;
     Human owner;
     Set<Human> participants;
@@ -28,7 +29,7 @@ public class Memory {
 
     public Memory(String description,
                   MemoryType typeOfMemory,
-                  LocalDate createdAt,
+                  LocalDateTime createdAt,
                   List<Resource> resources,
                   Human owner,
                   Set<Human> participants) {
@@ -63,11 +64,11 @@ public class Memory {
 
     public void setType(MemoryType type) { this.type = type; }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

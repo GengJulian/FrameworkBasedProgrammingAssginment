@@ -21,7 +21,7 @@ public class Memory {
     LocalDateTime createdAt;
     List<Resource> resources;
     Human owner;
-    Set<Human> participants;
+    List<Human> participants;
 
     public Memory(){
 
@@ -32,7 +32,7 @@ public class Memory {
                   LocalDateTime createdAt,
                   List<Resource> resources,
                   Human owner,
-                  Set<Human> participants) {
+                  List<Human> participants) {
         this.id = UUID.randomUUID().toString();
         this.description = description;
         this.type = typeOfMemory;
@@ -72,6 +72,14 @@ public class Memory {
         this.createdAt = createdAt;
     }
 
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
+
     public Human getOwner() {
         return owner;
     }
@@ -80,11 +88,11 @@ public class Memory {
         this.owner = owner;
     }
 
-    public Set<Human> getParticipants() {
+    public List<Human> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(Set<Human> participants) {
+    public void setParticipants(List<Human> participants) {
         this.participants = participants;
     }
 

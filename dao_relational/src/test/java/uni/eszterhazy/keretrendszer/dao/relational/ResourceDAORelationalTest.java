@@ -1,10 +1,12 @@
 package uni.eszterhazy.keretrendszer.dao.relational;
 
 import org.junit.Test;
+import uni.eszterhazy.keretrendszer.dao.ResourceDAO;
 
 import static org.junit.Assert.*;
 
 public class ResourceDAORelationalTest {
+
 
     @Test
     public void createResource() {

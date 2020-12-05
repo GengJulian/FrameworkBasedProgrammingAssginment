@@ -6,8 +6,10 @@ import java.util.Collection;
 
 public interface ResourceDAO {
     void createResource(Resource resource);
-    Resource readResource(String id);
+    Resource readResourceByResourceID(String resourceId);
+    Collection<Resource> readAllResourcesOfMemory(String memoryId);
     Collection<Resource> readAllResource();
     void updateResource(Resource resource);
-    void deleteResource(String id);
+    void deleteResourceByResourceID(String resourceId);
+    void deleteResourceByMemoryID(String memoryId);
 }

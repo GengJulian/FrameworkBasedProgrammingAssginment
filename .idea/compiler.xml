@@ -8,7 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
         <module name="console" />
+        <module name="controller" />
         <module name="util" />
+        <module name="web" />
         <module name="service" />
         <module name="dao_relational" />
       </profile>

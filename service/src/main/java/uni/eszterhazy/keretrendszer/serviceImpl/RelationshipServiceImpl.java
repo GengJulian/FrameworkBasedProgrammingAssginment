@@ -2,9 +2,11 @@ package uni.eszterhazy.keretrendszer.serviceImpl;
 
 import uni.eszterhazy.keretrendszer.dao.RelationshipDAO;
 import uni.eszterhazy.keretrendszer.model.Relationship;
+import uni.eszterhazy.keretrendszer.model.RelationshipType;
 import uni.eszterhazy.keretrendszer.service.RelationshipService;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class RelationshipServiceImpl implements RelationshipService {
     RelationshipDAO dao;
@@ -41,23 +43,31 @@ public class RelationshipServiceImpl implements RelationshipService {
 
     @Override
     public Collection<Relationship> getAllRelationshipByUser(String userId) {
-        return null;
+        return dao.readAllRelationshipByUserId(userId);
     }
 
     @Override
     public Collection<Relationship> getAllRelationShipByMemory(String memoryId) {
-        return null;
+        return dao.readAllRelationshipByMemoryId(memoryId);
     }
 
     @Override
-    public Collection<Relationship> getAllOwnerTypeOfRelationship(String userId) {
-        return null;
+    public Collection<Relationship> getAllOwnershipByUser(String userId) {
+        Collection<Relationship> relationshipsOfUser = dao.readAllRelationshipByUserId(userId);
+
+        return relationshipsOfUser
+                .stream()
+                .filter(relationship -> relationship.getType() == RelationshipType.OWNER)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Collection<Relationship> getAllParticipantTypeOfRelationship(String memoryId) {
-        return null;
+    public Collection<Relationship> getAllParticipationByMemory(String memoryId) {
+        Collection<Relationship> relationshipsOfMemory = dao.readAllRelationshipByMemoryId(memoryId);
+
+        return relationshipsOfMemory
+                .stream()
+                .filter(relationship -> relationship.getType() == RelationshipType.PARTICIPANT)
+                .collect(Collectors.toList());
     }
-
-
 }

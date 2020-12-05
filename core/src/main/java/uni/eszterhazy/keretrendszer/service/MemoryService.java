@@ -1,5 +1,6 @@
 package uni.eszterhazy.keretrendszer.service;
 
+import uni.eszterhazy.keretrendszer.exceptions.MemoryAlreadyExist;
 import uni.eszterhazy.keretrendszer.model.Memory;
 import uni.eszterhazy.keretrendszer.model.MemoryType;
 import uni.eszterhazy.keretrendszer.model.Human;
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 public interface MemoryService {
-    void addMemory(Memory memory);
+    void addMemory(Memory memory) throws MemoryAlreadyExist;
     void editMemory(Memory memory);
     void removeMemory(Memory memory);
     Memory getLatestMemoryOfOwner(Human owner);

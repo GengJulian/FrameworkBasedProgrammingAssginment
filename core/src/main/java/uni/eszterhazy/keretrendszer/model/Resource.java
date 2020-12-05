@@ -5,11 +5,13 @@ import java.util.UUID;
 public class Resource {
 
     String id;
+    String memoryId;
     String value;
     ResourceType type;
 
-    public Resource(String resourceValue, ResourceType type) {
+    public Resource(String memoryId, String resourceValue, ResourceType type) {
         this.id = UUID.randomUUID().toString();
+        this.memoryId = memoryId;
         this.value = resourceValue;
         this.type = type;
     }
@@ -20,6 +22,15 @@ public class Resource {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    public String getMemoryId() {
+        return memoryId;
+    }
+
+    public void setMemoryId(String memoryId) {
+        this.memoryId = memoryId;
     }
 
     public String getValue() {

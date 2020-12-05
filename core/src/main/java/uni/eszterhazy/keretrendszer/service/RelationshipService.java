@@ -12,6 +12,6 @@ public interface RelationshipService {
     Collection<Relationship> getAllRelationship();
     Collection<Relationship> getAllRelationshipByUser(String userId);
     Collection<Relationship> getAllRelationShipByMemory(String memoryId);
-    Collection<Relationship> getAllOwnerTypeOfRelationship(String userId);
-    Collection<Relationship> getAllParticipantTypeOfRelationship(String memoryId);
+    Collection<Relationship> getAllOwnershipByUser(String userId);
+    Collection<Relationship> getAllParticipationByMemory(String memoryId);
 }

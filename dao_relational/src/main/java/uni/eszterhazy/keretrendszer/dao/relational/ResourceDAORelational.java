@@ -28,12 +28,23 @@ public class ResourceDAORelational implements ResourceDAO {
     }
 
     @Override
-    public Resource readResource(String id) {
+    public Resource readResourceByResourceID(String resourceId) {
         Session session= factory.openSession();
-        String hql = "FROM Resource WHERE id = :id";
+        String hql = "FROM Resource WHERE id = :resourceId";
         Query query = session.createQuery(hql);
-        query.setParameter("id",id);
+        query.setParameter("resourceId",resourceId);
         Resource result = (Resource) query.list();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public Collection<Resource> readAllResourcesOfMemory(String memoryId) {
+        Session session= factory.openSession();
+        String hql = "FROM Resource WHERE memoryId = :resourceId";
+        Query query = session.createQuery(hql);
+        query.setParameter("resourceId",memoryId);
+        Collection<Resource> result = query.list();
         session.close();
         return result;
     }
@@ -56,12 +67,24 @@ public class ResourceDAORelational implements ResourceDAO {
     }
 
     @Override
-    public void deleteResource(String id) {
+    public void deleteResourceByResourceID(String id) {
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         String queryString = "DELETE FROM Resource WHERE id = :parameter_id";
         Query query = session.createQuery(queryString);
         query.setParameter("parameter_id",id);
+        query.executeUpdate();
+        tx.commit();
+        session.close();
+    }
+
+    @Override
+    public void deleteResourceByMemoryID(String memoryId) {
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        String queryString = "DELETE FROM Resource WHERE memoryId = :parameter_id";
+        Query query = session.createQuery(queryString);
+        query.setParameter("parameter_id",memoryId);
         query.executeUpdate();
         tx.commit();
         session.close();

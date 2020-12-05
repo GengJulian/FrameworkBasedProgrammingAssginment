@@ -1,6 +1,7 @@
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
     <class name="uni.eszterhazy.keretrendszer.model.Resource" table="Resource">
         <id name="id" type="string" column="resource_id"/>
+        <property name="memoryId" type="string" column="memory_id"/>
         <property name="value" type="string" column="resource_value"/>
         <property name="type" column="resource_type">
             <type name="org.hibernate.type.EnumType">

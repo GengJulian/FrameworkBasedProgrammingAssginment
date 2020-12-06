@@ -1,22 +1,25 @@
 package uni.eszterhazy.keretrendszer.serviceImpl;
 
 import uni.eszterhazy.keretrendszer.dao.HumanDAO;
-import uni.eszterhazy.keretrendszer.exceptions.HumanAlreadyCreated;
 import uni.eszterhazy.keretrendszer.model.Human;
-import uni.eszterhazy.keretrendszer.model.Memory;
+import uni.eszterhazy.keretrendszer.model.Relationship;
 import uni.eszterhazy.keretrendszer.service.HumanService;
+import uni.eszterhazy.keretrendszer.service.RelationshipService;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class HumanServiceImpl implements HumanService {
     private HumanDAO dao;
+    private RelationshipService relationshipService;
 
-    public HumanServiceImpl(HumanDAO dao){
+    public HumanServiceImpl(HumanDAO dao,RelationshipService relationshipService){
         this.dao = dao;
+        this.relationshipService = relationshipService;
     }
 
     @Override
-    public void addHuman(Human human) throws HumanAlreadyCreated {
+    public void addHuman(Human human){
         dao.createHuman(human);
     }
 
@@ -26,37 +29,36 @@ public class HumanServiceImpl implements HumanService {
     }
 
     @Override
-    public void removeHuman(String id) {
+    public void removeHuman(java.lang.String id) {
         dao.deleteHuman(id);
     }
 
     @Override
-    public void addMemory(Memory memory) {
-
+    public Human getHumanById(java.lang.String id){
+        Human human = dao.readHuman(id);
+        ArrayList<Relationship> ownerships = (ArrayList<Relationship>) relationshipService.getAllOwnershipByUser(human.getUserId());
+        if(ownerships == null){
+            human.setNumberOfMemories(0);
+        }else{
+            human.setNumberOfMemories(ownerships.size());
+        }
+        return human;
     }
 
     @Override
-    public void forgetMemory(Memory memory) {
+    public Collection<Human> getAllHumans() {
+        Collection<Human> humans = dao.readAllHuman();
+        for (Human human : humans){
+            ArrayList<Relationship> ownerships = (ArrayList<Relationship>) relationshipService.getAllOwnershipByUser(human.getUserId());
+            if(  ownerships == null){
+                human.setNumberOfMemories(0);
+            }else{
+                human.setNumberOfMemories(ownerships.size());
+            }
 
-    }
+        }
+        return humans;
 
-    @Override
-    public Memory getLatestMemory() {
-        return null;
-    }
-
-    @Override
-    public void forgetAllTheMemories() {
-
-    }
-
-    @Override
-    public void forgetBadMemories() {
-
-    }
-
-    @Override
-    public Collection<Human> getDepressedHumans() {
-        return null;
+        //return dao.readAllHuman();
     }
 }

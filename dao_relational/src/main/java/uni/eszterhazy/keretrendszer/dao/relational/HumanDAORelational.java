@@ -7,22 +7,20 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import uni.eszterhazy.keretrendszer.dao.HumanDAO;
-import uni.eszterhazy.keretrendszer.exceptions.HumanAlreadyCreated;
-import uni.eszterhazy.keretrendszer.exceptions.HumanNotFound;
 import uni.eszterhazy.keretrendszer.model.Human;
 
 import java.util.Collection;
 
 public class HumanDAORelational implements HumanDAO {
     private static SessionFactory factory;
-    private static Logger logger = Logger.getLogger("daoLogger");
+    private static final Logger logger = Logger.getLogger("daoLogger");
 
     public HumanDAORelational() {
         factory = new Configuration().configure().buildSessionFactory();
     }
 
     @Override
-    public void createHuman(Human human) throws HumanAlreadyCreated {
+    public void createHuman(Human human){
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         session.save(human);
@@ -40,7 +38,7 @@ public class HumanDAORelational implements HumanDAO {
     }
 
     @Override
-    public Human readHuman(String id) throws HumanNotFound {
+    public Human readHuman(java.lang.String id){
         Session session= factory.openSession();
         Human result = session.get(Human.class, id);
         //logger.info(result.getFirstName() + " " + result.getLastName()+" is retrieved from the database!");
@@ -57,10 +55,10 @@ public class HumanDAORelational implements HumanDAO {
     }
 
     @Override
-    public void deleteHuman(String id) {
+    public void deleteHuman(java.lang.String id) {
         Session session= factory.openSession();
         Transaction tx = session.beginTransaction();
-        String hql = "DELETE FROM Human WHERE id = :human_id";
+        java.lang.String hql = "DELETE FROM Human WHERE id = :human_id";
         //String hql = "DELETE FROM Human WHERE firstname = 'Lorenz'";
         Query query = session.createQuery(hql);
         query.setParameter("human_id",id);

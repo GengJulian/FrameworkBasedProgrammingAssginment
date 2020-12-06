@@ -40,7 +40,7 @@ public class HumanDAORelationalTest {
     public void readHuman() throws HumanNotFound, HumanAlreadyCreated {
         //dao.createHuman(human);
         System.out.println("Read "+ human);
-        Human result = dao.readHuman(human.getUserId());
+        Human result = dao.readHuman("asdsa");
         assertNotEquals(null,result);
     }
 

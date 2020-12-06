@@ -7,6 +7,8 @@ public class Relationship implements Serializable {
     String memoryId;
     RelationshipType type;
 
+    public Relationship(){}
+
     public Relationship(String userId, String memoryId, RelationshipType type) {
         this.userId = userId;
         this.memoryId = memoryId;

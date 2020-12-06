@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<context:component-scan base-package="uni.eszterhazy.keretrendszer.controller"/>
+    <mvc:annotation-driven/>
+
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+    </bean>
+    <bean id="humanDAORelational" class="uni.eszterhazy.keretrendszer.dao.relational.HumanDAORelational">
+    </bean>
+
+    <bean id="memoryDAORelational" class="uni.eszterhazy.keretrendszer.dao.relational.MemoryDAORelational">
+    </bean>
+
+    <bean id="relationshipDAORelational" class="uni.eszterhazy.keretrendszer.dao.relational.RelationshipDAORelational">
+    </bean>
+
+    <bean id="resourceDAORelational" class="uni.eszterhazy.keretrendszer.dao.relational.ResourceDAORelational">
+    </bean>
+
+    <bean id="memoryService" class="uni.eszterhazy.keretrendszer.serviceImpl.MemoryServiceImpl">
+        <constructor-arg index="0" ref="memoryDAORelational"/>
+        <constructor-arg index="1" ref="resourceService"/>
+        <constructor-arg index="2" ref="relationshipService"/>
+        <constructor-arg index="3" ref="humanService"/>
+    </bean>
+
+    <bean id="resourceService" class="uni.eszterhazy.keretrendszer.serviceImpl.ResourceServiceImpl">
+        <constructor-arg  ref="resourceDAORelational"/>
+    </bean>
+
+    <bean id="relationshipService" class="uni.eszterhazy.keretrendszer.serviceImpl.RelationshipServiceImpl">
+        <constructor-arg  ref="relationshipDAORelational"/>
+    </bean>
+
+    <bean id="humanService" class="uni.eszterhazy.keretrendszer.serviceImpl.HumanServiceImpl">
+        <constructor-arg index="0" ref="humanDAORelational"/>
+        <constructor-arg index="1" ref="relationshipService"/>
+    </bean>
+</beans>

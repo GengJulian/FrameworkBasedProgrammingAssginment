@@ -2,11 +2,8 @@ package uni.eszterhazy.keretrendszer.model;
 
 import org.apache.log4j.Logger;
 
-import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 public class Memory {
@@ -15,19 +12,20 @@ public class Memory {
 
 
     //static Logger logger = Logger.getLogger("org.example.core.uni.eszterhazy.keretrendszer.service.model");
-    String id;
-    String description;
+    java.lang.String id;
+    java.lang.String description;
     MemoryType type;
     LocalDateTime createdAt;
     List<Resource> resources;
     Human owner;
+    String ownerId;
     List<Human> participants;
 
     public Memory(){
 
     }
 
-    public Memory(String description,
+    public Memory(java.lang.String description,
                   MemoryType typeOfMemory,
                   LocalDateTime createdAt,
                   List<Resource> resources,
@@ -44,19 +42,19 @@ public class Memory {
         //logger.debug("Memory with id: "+ this.id + " has been created!");
     }
 
-    public String getId() {
+    public java.lang.String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(java.lang.String id) {
         this.id = id;
     }
 
-    public String getDescription() {
+    public java.lang.String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(java.lang.String description) {
         this.description = description;
     }
 
@@ -88,6 +86,14 @@ public class Memory {
         this.owner = owner;
     }
 
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public List<Human> getParticipants() {
         return participants;
     }
@@ -97,7 +103,7 @@ public class Memory {
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "Memory{" +
                 "id='" + id + '\'' +
                 ", description='" + description + '\'' +

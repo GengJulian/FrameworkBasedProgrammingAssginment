@@ -11,10 +11,12 @@ import java.util.stream.Collectors;
 public class RelationshipServiceImpl implements RelationshipService {
     RelationshipDAO dao;
 
+
     public RelationshipServiceImpl(RelationshipDAO dao){
         this.dao = dao;
     }
 
+    public RelationshipServiceImpl(){}
 
     @Override
     public void addRelationship(Relationship relationship) {
@@ -57,7 +59,7 @@ public class RelationshipServiceImpl implements RelationshipService {
 
         return relationshipsOfUser
                 .stream()
-                .filter(relationship -> relationship.getType() == RelationshipType.OWNER)
+                .filter(relationship -> relationship.getType() == RelationshipType.owner)
                 .collect(Collectors.toList());
     }
 
@@ -67,7 +69,7 @@ public class RelationshipServiceImpl implements RelationshipService {
 
         return relationshipsOfMemory
                 .stream()
-                .filter(relationship -> relationship.getType() == RelationshipType.PARTICIPANT)
+                .filter(relationship -> relationship.getType() == RelationshipType.participant)
                 .collect(Collectors.toList());
     }
 }

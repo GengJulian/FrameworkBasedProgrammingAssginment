@@ -1,15 +1,13 @@
 package uni.eszterhazy.keretrendszer.dao;
 
-import uni.eszterhazy.keretrendszer.exceptions.HumanAlreadyCreated;
-import uni.eszterhazy.keretrendszer.exceptions.HumanNotFound;
 import uni.eszterhazy.keretrendszer.model.Human;
 
 import java.util.Collection;
 
 public interface HumanDAO{
-    void createHuman(Human human) throws HumanAlreadyCreated;
+    void createHuman(Human human);
     Collection<Human> readAllHuman();
-    Human readHuman(String id) throws HumanNotFound;
+    Human readHuman(java.lang.String id);
     void updateHuman(Human human);
-    void deleteHuman(String id);
+    void deleteHuman(java.lang.String id);
 }

@@ -12,7 +12,6 @@
         <module>core</module>
         <module>util</module>
         <module>console</module>
-        <module>uni.eszterhazy.keretrendszer.service</module>
         <module>service</module>
         <module>dao_relational</module>
         <module>web</module>

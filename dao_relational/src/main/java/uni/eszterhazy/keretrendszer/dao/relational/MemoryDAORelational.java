@@ -8,14 +8,13 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import uni.eszterhazy.keretrendszer.dao.MemoryDAO;
 import uni.eszterhazy.keretrendszer.exceptions.MemoryAlreadyExist;
-import uni.eszterhazy.keretrendszer.exceptions.MemoryNotFound;
 import uni.eszterhazy.keretrendszer.model.Memory;
 
 import java.util.Collection;
 
 public class MemoryDAORelational implements MemoryDAO {
     private static SessionFactory factory;
-    private static Logger logger = Logger.getLogger("daoLogger");
+    private static final Logger logger = Logger.getLogger("daoLogger");
 
     public MemoryDAORelational() {
         factory = new Configuration().configure().buildSessionFactory();
@@ -32,12 +31,13 @@ public class MemoryDAORelational implements MemoryDAO {
     }
 
     @Override
-    public Memory readMemory(String id) throws MemoryNotFound {
+    public Memory readMemory(String id){
         Session session= factory.openSession();
         Memory result = session.get(Memory.class, id);
         //logger.info(result.getFirstName() + " " + result.getLastName()+" is retrieved from the database!");
         return result;
     }
+
 
     @Override
     public Collection<Memory> readAllMemory() {

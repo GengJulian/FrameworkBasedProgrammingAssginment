@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public interface MemoryDAO {
     void createMemory(Memory memory) throws MemoryAlreadyExist;
-    Memory readMemory(String id) throws MemoryNotFound;
+    Memory readMemory(String id);
     Collection<Memory> readAllMemory();
     void updateMemory(Memory memory);
     void deleteMemory(String id);

@@ -9,11 +9,11 @@ import uni.eszterhazy.keretrendszer.dao.relational.HumanDAORelational;
 import uni.eszterhazy.keretrendszer.dao.relational.MemoryDAORelational;
 import uni.eszterhazy.keretrendszer.dao.relational.RelationshipDAORelational;
 import uni.eszterhazy.keretrendszer.dao.relational.ResourceDAORelational;
-import uni.eszterhazy.keretrendszer.model.Relationship;
-import uni.eszterhazy.keretrendszer.model.Resource;
+import uni.eszterhazy.keretrendszer.service.HumanService;
 import uni.eszterhazy.keretrendszer.service.MemoryService;
 import uni.eszterhazy.keretrendszer.service.RelationshipService;
 import uni.eszterhazy.keretrendszer.service.ResourceService;
+import uni.eszterhazy.keretrendszer.serviceImpl.HumanServiceImpl;
 import uni.eszterhazy.keretrendszer.serviceImpl.MemoryServiceImpl;
 import uni.eszterhazy.keretrendszer.serviceImpl.RelationshipServiceImpl;
 import uni.eszterhazy.keretrendszer.serviceImpl.ResourceServiceImpl;
@@ -52,7 +52,7 @@ public class Config {
     }
 
     @Bean
-    public ResourceDAO ResourceDAORelational(){
+    public ResourceDAO resourceDAORelational(){
         try {
             return new ResourceDAORelational();
         }catch(Exception exception){
@@ -63,10 +63,11 @@ public class Config {
 
     @Bean
     public MemoryService memoryService(MemoryDAO dao,
-                                                     ResourceService resourceService,
-                                                     RelationshipService relationshipService){
+                                       ResourceService resourceService,
+                                       RelationshipService relationshipService,
+                                       HumanService humanService){
         try{
-            return new MemoryServiceImpl(dao,resourceService,relationshipService);
+            return new MemoryServiceImpl(dao,resourceService,relationshipService,humanService);
         }catch (Exception exception){
             exception.printStackTrace();
         }
@@ -93,6 +94,16 @@ public class Config {
             exception.printStackTrace();
         }
 
+        return null;
+    }
+
+    @Bean
+    public HumanService humanService(HumanDAO dao,RelationshipService service){
+        try{
+            return  new HumanServiceImpl(dao,service);
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
         return null;
     }
 }

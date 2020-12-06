@@ -4,6 +4,6 @@ import uni.eszterhazy.keretrendszer.model.Human;
 
 public class HumanAlreadyCreated extends Throwable {
     public HumanAlreadyCreated(Human human){
-        super(String.valueOf(human));
+        super(java.lang.String.valueOf(human));
     }
 }

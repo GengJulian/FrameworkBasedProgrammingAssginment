@@ -45,6 +45,9 @@ public class MemoryServiceImpl implements MemoryService {
                 RelationshipType.owner);
         relationshipService.addRelationship(ownership);
 
+        if(memory.getParticipants() == null){
+            memory.setParticipants(new ArrayList<>());
+        }
         for(Human participant: memory.getParticipants()){
             if(humanService.getHumanById(participant.getUserId()) == null){
                 humanService.addHuman(participant);
@@ -57,6 +60,9 @@ public class MemoryServiceImpl implements MemoryService {
 
         }
 
+        if(memory.getResources() == null){
+            memory.setResources(new ArrayList<>());
+        }
         for (Resource resource: memory.getResources()){
             resourceService.addResource(resource);
         }
@@ -87,7 +93,15 @@ public class MemoryServiceImpl implements MemoryService {
 
     @Override
     public Memory getMemoryByMemoryId(String memoryId) {
-        return dao.readMemory(memoryId);
+        Memory memory = dao.readMemory(memoryId);
+        Collection<Relationship> relationships = relationshipService.getAllRelationShipByMemory(memoryId);
+        String ownerId = relationships
+                .stream()
+                .filter(relationship -> relationship.getType() == RelationshipType.owner)
+                .findFirst().get().getUserId();
+        memory.setOwnerId(ownerId);
+
+        return memory;
     }
 
     @Override
@@ -99,7 +113,6 @@ public class MemoryServiceImpl implements MemoryService {
     @Override
     public Collection<Memory> getAllMemoryOfOwner(String userId) {
         Collection<Relationship> ownershipsOfUser = relationshipService.getAllOwnershipByUser(userId);
-        System.out.println(ownershipsOfUser);
         Collection<Memory> memories = new ArrayList<Memory>();
         for(Relationship relationship: ownershipsOfUser){
             memories.add(dao.readMemory(relationship.getMemoryId()));

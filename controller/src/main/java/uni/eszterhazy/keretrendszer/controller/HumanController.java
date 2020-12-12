@@ -3,12 +3,12 @@ package uni.eszterhazy.keretrendszer.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import uni.eszterhazy.keretrendszer.model.Human;
 import uni.eszterhazy.keretrendszer.service.HumanService;
 import uni.eszterhazy.keretrendszer.service.MemoryService;
+
+import java.util.UUID;
 
 @Controller
 public class HumanController {
@@ -19,6 +19,12 @@ public class HumanController {
     public HumanController(HumanService service,MemoryService memoryService){
         this.humanService = service;
         this.memoryService = memoryService;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String foundException(Exception e){
+        System.out.println(e.getMessage());
+        return e.getMessage();
     }
 
     @GetMapping(value="/humans")
@@ -34,10 +40,17 @@ public class HumanController {
         return "humanDetails.jsp";
     }
 
-    @GetMapping(value="/deleteMemory/{id}")
-    public String deleteMemory(@PathVariable String id, Model model){
-        memoryService.removeMemory(id);
-
-        return "redirect:/humans";
+    @GetMapping(value="/addHuman")
+    public String addHumanForm(Model model){
+        model.addAttribute("human",new Human());
+        return "humanForm.jsp";
     }
+
+    @PostMapping(value = "addHuman")
+    public String addHuman(@ModelAttribute("human") Human human){
+        human.setUserId(UUID.randomUUID().toString());
+        humanService.addHuman(human);
+        return "redirect:humans/";
+    }
+
 }
